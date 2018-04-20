@@ -2,12 +2,14 @@ package com.brainacad.hw;
 
 import com.brainacad.hw.FileWork.DirView;
 import com.brainacad.hw.FileWork.IDirView;
+import com.brainacad.hw.FileWork.IOFileOperation;
 import com.brainacad.hw.StringParser.IStringParser;
 import com.brainacad.hw.StringParser.InputValidator;
 import com.brainacad.hw.StringParser.StringParser;
 import com.brainacad.hw.StringParser.ValidationExaption;
 
 import java.io.IOException;
+import java.util.Map;
 import java.util.Scanner;
 
 public class Main {
@@ -27,6 +29,12 @@ public class Main {
             System.out.println();
             dirView.getListOfMaskFile(parser.getParseMask());
             dirView.print();
+            dirView.changerFiles();
+            Map<String, String> map = dirView.getFileMap();
+            for(Map.Entry<String, String> item : map.entrySet()){
+                System.out.println("Ключ: \n" + item.getKey());
+                System.out.printf("Значение: \n" + item.getValue());
+            }
         }
         catch (ValidationExaption exc){
             System.out.println("Ошибка валидации: " + exc.getValidationErrorInfo());
